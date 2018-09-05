@@ -10,4 +10,9 @@ class AdminController extends Controller
     {
         return view('content.example');
     }    
+
+    public function loket(Request $req)
+    {
+        return view('content.loket');
+    }    
 }
