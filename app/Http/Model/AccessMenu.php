@@ -16,7 +16,7 @@ class AccessMenu extends Model
         if (Auth::check()) {
             
             $user = Auth::user();
-            $menu = \DB::select("select * from `users` left join `groups` on `users`.`user_group` = `groups`.`id` left join `roles` on `groups`.`id` = `roles`.`group_id` left join `route` on `roles`.`id` = `route`.`role_id` where `users`.`id` = ".$user->id." order by `route`.`name` desc");
+            $menu = \DB::select("select * from `users` left join `groups` on `users`.`group_id` = `groups`.`id` left join `roles` on `groups`.`id` = `roles`.`group_id` left join `route` on `roles`.`id` = `route`.`role_id` where `users`.`id` = ".$user->id." order by `route`.`name` desc");
 
             $item = [];
             foreach ($menu as $key => $value) {
