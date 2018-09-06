@@ -3,7 +3,7 @@
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets_matrix/libs/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets_matrix/libs/jquery-minicolors/jquery.minicolors.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets_matrix/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.mi') }}n.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets_matrix/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets_matrix/libs/quill/dist/quill.snow.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets_matrix/extra-libs/multicheck/multicheck.css') }}">
     <link rel="stylesheet" href="{{ asset('assets_matrix/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
@@ -81,14 +81,18 @@
 
         });
         /*datwpicker*/
-        jQuery('.mydatepicker').datepicker();
-        jQuery('#datepicker-autoclose').datepicker({
-            autoclose: true,
-            todayHighlight: true
-        });
-        // var quill = new Quill('#editor', {
-            // theme: 'snow'
-        // });
+        $(function () {
 
+            $('.mydatepicker').datepicker();
+            $('#datepicker-autoclose').datepicker({
+                autoclose: true,
+                todayHighlight: true,
+                dateFormat: "dd-mm-yy h:i:s"
+            });
+            $('#datepicker-autoclose-two').datetimepicker({
+                // pick12HourFormat: true
+            });
+        
+        });
     </script>
 @endsection

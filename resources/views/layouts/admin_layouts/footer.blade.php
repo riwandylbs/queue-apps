@@ -2,7 +2,7 @@
 <!-- footer -->
 <!-- ============================================================== -->
 <footer class="footer text-center">
-    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+    Developed by <a href="mailto:riwandy.septiansyah15@gmail.com">Riwandy S Lubis</a>.
 </footer>
 <!-- ============================================================== -->
 <!-- End footer -->

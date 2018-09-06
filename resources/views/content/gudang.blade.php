@@ -22,125 +22,74 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">CHECK IN</span></a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">CHECK OUT</span></a> </li>
-                </ul>
-
-                <!-- Tab panes -->
-                <div class="tab-content tabcontent-border">
-                    <div class="tab-pane active" id="home" role="tabpanel">
-                        <div class="p-20">
-                            <!-- FORM ONE -->
-                            <form class="form-horizontal">
-                                <div class="card-body">
-                                    <h4 class="card-title">DATA CHECK IN</h4>
-                                    <div class="form-group row">
-                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label"> Date / Time</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="fname" value="{{ date('d-m-Y H:i:s', strtotime(now())) }}" placeholder="" Disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Loading Dock No.</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="lname" placeholder="Loading Dock No. Here">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Vehicle Number</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="password" placeholder="Vehicle Number Here">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="email1" class="col-sm-3 text-right control-label col-form-label">Expedition Name</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="email1" placeholder="Expedition Name Here">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Card No</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="cono1" placeholder="Card No Here">
-                                        </div>
-                                    </div>
-                                  
-                                </div>
-                                <div class="border-top">
-                                    <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
+            <form class="form-horizontal">
+                <div class="card-body">
+                    <!-- <h4 class="card-title"></h4> -->
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label"> Date / Time</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="fname" value="{{ date('d-m-Y H:i:s', strtotime(now())) }}" placeholder="" Disabled>
                         </div>
                     </div>
-                    <div class="tab-pane " id="profile" role="tabpanel">
-                        <div class="p-20">
-                            <!-- FORM TWO -->
-                            <form class="form-horizontal">
-                                <div class="card-body">
-                                    <h4 class="card-title">DATA CHECK OUT</h4>
-                                    <div class="form-group row">
-                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Vehicle Number</label>
-                                        <div class="row md-3">
-                                            <div class="col-lg-10">
-                                                <input type="text" class="form-control" id="fname" value="B 1234 KLM" placeholder="Vehicle Number Here">
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <button type="button" class="btn btn-primary">Search</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Loading No.</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="lname" placeholder="Loading No Here" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Card No.</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="password" placeholder="Card No Here" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="email1" class="col-sm-3 text-right control-label col-form-label">Check Out</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="datepicker-autoclose" placeholder="Check Out Here">
-                                        </div>
-                                    </div>
-                                   
-                                </div>
-                                <div class="border-top">
-                                    <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                        </form>
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Loading Dock No.</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="lname" placeholder="Loading Dock No. Here">
+                        </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Vehicle Number</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="password" placeholder="Vehicle Number Here">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email1" class="col-sm-3 text-right control-label col-form-label">Expedition Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="email1" placeholder="Expedition Name Here">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Card No</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="cono1" placeholder="Card No Here">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Type</label>
+                        <div class="col-sm-9">
+                            <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                <option value="-">Load</option>
+                                <option value="-">Unload</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="border-top">
+                    <div class="card-body">
+                        <button type="button" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>    
                 </div>
             </div>
         </div>
-    </div>
-</div>
-   
-<!-- DATA TABLES -->
-<div class="row">
-    <div class="col-md-12">
+
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">LIST DATA</h5>
+                <h5 class="card-title">HISTORY</h5>
                 <div class="table-responsive">
                     <table id="zero_config" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Date / Time</th>
-                                <th>Loading Dock No.</th>
-                                <th>Vehicle Number</th>
-                                <th>Expedition Name</th>
-                                <th>Card No</th>
-                                <th>Action</th>
+                                <th>No.</th>
+                                <th>Location</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Date Time In</th>
+                                <th>Date Time Out</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -603,12 +552,12 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>No.</th>
+                                <th>Location</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Date Time In</th>
+                                <th>Date Time Out</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -616,6 +565,5 @@
 
             </div>
         </div>
-    </div>
-</div>
+    <!-- </div> -->
 @endsection

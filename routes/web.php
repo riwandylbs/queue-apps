@@ -13,14 +13,21 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('beranda');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin', 'AdminController@dashboard');
-    Route::get('/loket', 'AdminController@loket')->name('check.in');
+    Route::get('/admin', 'AdminController@dashboard')->name('admin');
+    Route::get('/gudang', 'AdminController@gudang')->name('gudang');
+
+    Route::group(['middleware' => 'App\Http\Middleware\OperatorAccessControl'], function()
+    {
+        Route::get('/loket', 'AdminController@loket')->name('check.in');
+    });
+
+
 });
 
