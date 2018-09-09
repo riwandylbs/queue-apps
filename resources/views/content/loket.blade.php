@@ -32,44 +32,54 @@
                     <div class="tab-pane active" id="home" role="tabpanel">
                         <div class="p-20">
                             <!-- FORM ONE -->
-                            <form class="form-horizontal">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <form method="post" action="{{ route('create.queue') }}" class="form-horizontal">
+                            @csrf
                                 <div class="card-body">
                                     <h4 class="card-title">DATA CHECK IN</h4>
                                     <div class="form-group row">
                                         <label for="fname" class="col-sm-3 text-right control-label col-form-label"> Date / Time</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="fname" value="{{ date('d-m-Y H:i:s', strtotime(now())) }}" placeholder="" Disabled>
+                                            <input type="text" class="form-control" name="date_in" value="{{ date('d-m-Y H:i:s') }}" >
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="lname" class="col-sm-3 text-right control-label col-form-label">Loading Dock No.</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="lname" placeholder="Loading Dock No. Here">
+                                            <input type="text" class="form-control" id="loading_dock" value="{{ $dockNumber->number + 1 }}" name="loading_dock" placeholder="Loading Dock No. Here">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="lname" class="col-sm-3 text-right control-label col-form-label">Vehicle Number</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="password" placeholder="Vehicle Number Here">
+                                            <input type="text" class="form-control" name="vehicle_no" placeholder="Vehicle Number Here">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="email1" class="col-sm-3 text-right control-label col-form-label">Expedition Name</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="email1" placeholder="Expedition Name Here">
+                                            <input type="text" class="form-control" name="expd_name" placeholder="Expedition Name Here">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Card No</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="cono1" placeholder="Card No Here">
+                                            <input type="text" class="form-control" name="card_no" placeholder="Card No Here">
                                         </div>
                                     </div>
                                   
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>
@@ -107,7 +117,7 @@
                                     <div class="form-group row">
                                         <label for="email1" class="col-sm-3 text-right control-label col-form-label">Check Out</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="datepicker-autoclose" placeholder="Check Out Here">
+                                            <input type="text" class="form-control" value="{{ date('d-m-Y H:i:s') }}" id="datepicker-autoclose" placeholder="Check Out Here">
                                         </div>
                                     </div>
                                    

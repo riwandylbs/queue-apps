@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class route extends Model
+class Route extends Model
 {
-    //
+    protected $table = 'route';
 }

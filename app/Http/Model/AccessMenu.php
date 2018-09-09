@@ -16,12 +16,12 @@ class AccessMenu extends Model
         if (Auth::check()) {
             
             $user = Auth::user();
-            $menu = \DB::select("select * from `users` left join `groups` on `users`.`group_id` = `groups`.`id` left join `roles` on `groups`.`id` = `roles`.`group_id` left join `route` on `roles`.`id` = `route`.`role_id` where `users`.`id` = ".$user->id." order by `route`.`name` desc");
+            $menu = \DB::select("select * from `users` left join `groups` on `users`.`group_id` = `groups`.`id` left join `roles` on `groups`.`id` = `roles`.`group_id` left join `route` on `roles`.`id` = `route`.`role_id` where `users`.`id` = ".$user->id." and `route`.`type` = 'menu' order by `route`.`name` desc");
 
             $item = [];
             foreach ($menu as $key => $value) {
                 $item[] = [
-                    'route' => $value->route,
+                    'route' => $value->route_name,
                     'name' => $value->name,
                     'icon' => $value->icon,
                 ];   

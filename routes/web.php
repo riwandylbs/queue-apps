@@ -21,11 +21,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', 'AdminController@dashboard')->name('admin');
-    Route::get('/gudang', 'AdminController@gudang')->name('gudang');
-
-    Route::group(['middleware' => 'App\Http\Middleware\OperatorAccessControl'], function()
+    Route::group(['middleware' => 'App\Http\Middleware\UserAccessControl'], function()
     {
         Route::get('/loket', 'AdminController@loket')->name('check.in');
+        Route::get('/gudang', 'AdminController@gudang')->name('gudang');
+        Route::post('/create', 'AdminController@createQueue')->name('create.queue');
+        
     });
 
 
