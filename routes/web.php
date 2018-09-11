@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('beranda');
+// Route::get('/', function () {
+//     return view('content.front');
+// })->name('beranda');
+Route::get('/', 'HomeController@front')->name('front');
+
 
 Auth::routes();
 
