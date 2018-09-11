@@ -66,13 +66,29 @@ class AdminController extends Controller
     
     public function gudang(Request $request)
     {
-        $queueDb = Queue::getAlldata($request->input('data-list', null));
-
-        if ($request->input('search_vehicle', null)) {
+        $queueDb = Queue::getAlldata(null);
+        if ($request->input('dateGudang', null) != null ||  $request->input('vehicleGudang', null) != null) {
             $queueDb    = new Queue();
-            $searching  = $queueDb->searching($request->input('search_vehicle', null));
-            // return view('content.home_gudang', compact(''));        
+            $queueDb  = $queueDb->searchVehicle($request->input('dateGudang', null), $request->input('vehicleGudang', null));
+            return view('content.home_gudang', compact('queueDb'));                    
         }
         return view('content.home_gudang', compact('queueDb'));        
+    }
+
+    public function setTimeStart(Request $request, $id)
+    {
+        $queueDb = Queue::setTimeStart($request, $id);
+        $history = Queue::history($queueDb->vehicle_no);
+
+        return view('content.gudang', compact('queueDb', 'history'));        
+    }
+
+    public function viewVehicle(Request $request, $id)
+    {
+        $queueDb = Queue::find($id);
+        $history = Queue::history($queueDb->vehicle_no);
+        
+        return view('content.gudang', compact('queueDb', 'history'));        
+
     }
 }

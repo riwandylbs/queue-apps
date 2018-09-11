@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Http\Model\Groups;
+use App\Http\Model\Gudang;
 
 class User extends Authenticatable
 {

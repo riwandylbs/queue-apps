@@ -80,7 +80,51 @@ class Queue extends Model
         } else {
             $data = Queue::orderBy('created_at', 'desc')->get();
         }
-        
+
         return $data;
+    }
+
+    public function searchVehicle($date = null, $vehicleNumber = null)
+    {
+        if (!empty($date) && !empty($vehicleNumber)) {
+            $data = Queue::where('date_in', 'LIKE', $date."%")
+                        ->orWhere('vehicle_no', 'LIKE', "%".$vehicleNumber."%")
+                        ->get();
+        } else if (!empty($date)) {
+            $data = Queue::where('date_in', 'like', $date."%")->get();            
+        } else{
+            $data = Queue::where('vehicle_no', 'LIKE', "%".$vehicleNumber."%")->get();
+        }
+
+        return $data;
+    }
+
+    public static function history($vehicleNumber = null)
+    {
+        $data = Queue::where('vehicle_no', $vehicleNumber )->orderBy('created_at', 'DESC')->get();
+        return $data;        
+    }
+
+    public static function setTimeStart(Request $request, $id)
+    {
+        $user = Auth::id();
+        $getGudang = AccessGudang::with('gudang')->where('user_id', $user)->first();
+
+        $queueDb = Queue::find($id);
+        
+        if (empty($queueDb->time_start)) {
+            $queueDb->locations = $getGudang->gudang->gudang_name;
+            $queueDb->type = $request->input('type');
+            $queueDb->status = $request->input('status');
+            $queueDb->check_in = $request->input('check_in');
+            $queueDb->time_start = $request->input('time_start');
+        } else {
+            $queueDb->time_finish = $request->input('time_finish');
+            $queueDb->status = 'Done';
+        }
+
+        $queueDb->save();
+
+        return $queueDb;
     }
 }

@@ -24,13 +24,14 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => 'App\Http\Middleware\UserAccessControl'], function()
     {
         Route::any('/loket', 'AdminController@loket')->name('check.in');
-        Route::get('/gudang', 'AdminController@gudang')->name('gudang');
+        Route::any('/gudang', 'AdminController@gudang')->name('gudang');
         Route::post('/create', 'AdminController@createQueue')->name('create.queue');
         Route::post('/checkout', 'AdminController@checkout')->name('check.out');
         Route::post('/searching', 'AdminController@searching')->name('searching.vehicle');
-        // Route::post('/gudang', 'AdminController@setTimeStart')->name('time.start');
         
     });
+    Route::get('/gudang/view/{id}', 'AdminController@viewVehicle')->name('view.gudang');
+    Route::any('/gudang/setTimeStart/{id}', 'AdminController@setTimeStart')->name('set.time.start');
 
 
 });

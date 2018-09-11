@@ -4,7 +4,7 @@
  <div class="page-breadcrumb">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">ADMIN LOKET</h4>
+            <h4 class="page-title">ADMIN GUDANG A</h4>
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -24,26 +24,27 @@
 
         <div class="card">
             <div class="card-body">
-                <form action="" method="post" class="form-horizontal">
+                <form action=" {{ route('gudang') }} " method="post" class="form-horizontal">
                     @csrf
-                <h5 class="card-title">SEARCH VEHICLE</h5>
-                <br />
-                <div class="form-group row col-sm-8 align-items-left date-search">                    
-                    <div class="col-lg-12 col-md-12">
-                        <div class="input-group">
-                            <input type="text" class="form-control datepiecker-search" name="data-list" placeholder="Date" aria-label="Recipient 's username" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2"> <i class="mdi mdi-calendar-clock"></i> </span>
-                            </div>
+                    <h5 class="card-title">SEARCH VEHICLE</h5>
+                    <br />
+                    <div class="form-group row col-sm-8 align-items-left date-search">                    
+                        <div class="col-lg-12 col-md-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control datepiecker-search" name="dateGudang" placeholder="Date" aria-label="Recipient 's username" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2"> <i class="mdi mdi-calendar-clock"></i> </span>
+                                </div>
 
-                            <input type="text" class="form-control car-search" name="data-list" placeholder="Vehicle Number" aria-label="Recipient 's username" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2"> <i class="mdi mdi-car"></i> </span>
+                                <input type="text" class="form-control car-search" name="vehicleGudang" placeholder="Vehicle Number" aria-label="Recipient 's username" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2"> <i class="mdi mdi-car"></i> </span>
+                                </div>
+                                <button type="submit" class="btn btn-default search">Search</button>
                             </div>
-                            <button type="submit" class="btn btn-default search">Search</button>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="table-responsive">
                     <table id="zero_config" class="table table-striped table-bordered">
                         <thead>
@@ -65,8 +66,8 @@
                               <td> {{ $item->vehicle_no }} </td>
                               <td> {{ $item->status }} </td>
                               <td>    
-                                    @if($item->status != 'on progress' && $item->status != 'done')
-                                        <a href="" class="btn btn-secondary"><i class="mdi mdi-grease-pencil"></i></a> 
+                                    @if($item->status != 'done')
+                                        <a href=" {{ action('AdminController@viewVehicle', $item->id) }} " class="btn btn-secondary"><i class="mdi mdi-grease-pencil"></i></a> 
                                     @endif
                                     <a href="" class="btn btn-success"><i class="mdi mdi-eye"></i></a> 
                                 </td>      
