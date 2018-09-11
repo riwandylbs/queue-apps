@@ -7,11 +7,26 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets_matrix/libs/quill/dist/quill.snow.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets_matrix/extra-libs/multicheck/multicheck.css') }}">
     <link rel="stylesheet" href="{{ asset('assets_matrix/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tempusdominus-bootstrap-4.css') }}">
+    
    <style>
-       .datepicker {
-           z-index: 9999 !important;
-       }
-   </style>
+    .datepicker {
+        z-index: 9999 !important;
+    }
+
+    .form-search {
+        float: left !important;
+        width: 50% !important;
+    }
+
+    .date-search {
+        margin-bottom: 10px  !important;
+    }
+
+    .search, .car-search {
+        margin-left: 10px;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -38,6 +53,9 @@
     <script src="{{ asset('assets_matrix/extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
     <script src="{{ asset('assets_matrix/extra-libs/multicheck/jquery.multicheck.js') }}"></script>
     <script src="{{ asset('assets_matrix/extra-libs/DataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/moment.min.js') }}"></script>
+    <script src="{{ asset('js/tempusdominus-bootstrap-4.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
     <script>
         /****************************************
          *       Basic Table                   *
@@ -84,15 +102,16 @@
         $(function () {
 
             $('.mydatepicker').datepicker();
-            $('#datepicker-autoclose').datepicker({
+            $('#datepicker-autoclose, .datepiecker-search').datepicker({
                 autoclose: true,
                 todayHighlight: true,
-                dateFormat: "dd-mm-yy h:i:s"
+                format: "dd-mm-yyyy"
             });
-            $('#datepicker-autoclose-two').datetimepicker({
-                // pick12HourFormat: true
-            });
-        
+
+            $('#datetimepicker1').datetimepicker();
+
         });
+
+
     </script>
 @endsection

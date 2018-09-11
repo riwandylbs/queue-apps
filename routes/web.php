@@ -23,9 +23,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin', 'AdminController@dashboard')->name('admin');
     Route::group(['middleware' => 'App\Http\Middleware\UserAccessControl'], function()
     {
-        Route::get('/loket', 'AdminController@loket')->name('check.in');
+        Route::any('/loket', 'AdminController@loket')->name('check.in');
         Route::get('/gudang', 'AdminController@gudang')->name('gudang');
         Route::post('/create', 'AdminController@createQueue')->name('create.queue');
+        Route::post('/checkout', 'AdminController@checkout')->name('check.out');
+        Route::post('/searching', 'AdminController@searching')->name('searching.vehicle');
+        // Route::post('/gudang', 'AdminController@setTimeStart')->name('time.start');
         
     });
 

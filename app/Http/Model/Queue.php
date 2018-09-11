@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\Model\TempDock;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Queue extends Model
 {
     protected $table = 'queue';
 
-    public static function store(Request $request)
+    public function store(Request $request)
     {
         $res = new \stdClass();
         $res->isSuccess = false;
@@ -22,7 +23,7 @@ class Queue extends Model
         $table->vehicle_no = $request->input('vehicle_no');
         $table->expd_name = $request->input('expd_name');
         $table->card_no = $request->input('card_no');
-        // $table->save();
+        $table->save();
         
         if($table->save()) {
             $table->save();
@@ -34,7 +35,7 @@ class Queue extends Model
         return $res;
     }
 
-    public static function addTempDock()
+    public function addTempDock()
     {
         $last = TempDock::orderBy('created_at', 'desc')->first();
 
@@ -45,5 +46,41 @@ class Queue extends Model
         $tempDock->save();
 
         return true;
+    }
+
+    public function searching($vehicleNumber = null)
+    {
+        $data = DB::table('queue')
+                ->where('vehicle_no', 'LIKE', $vehicleNumber)
+                ->where('status','ready')
+                ->first();
+
+        return $data;
+    }
+
+    public function checkout(Request $request)
+    {
+        $queueDb  = Queue::where('vehicle_no', $request->input('vehicle_no', null))->where('status', 'ready')->first();
+        $queueDb->check_in = $request->input('date_in');
+        $queueDb->check_out = $request->input('check_out');
+        $queueDb->locations = "checkout";
+
+        if ($queueDb->save()) {
+            $queueDb->save();
+            return $queueDb;
+        }
+
+        return false;
+    }
+
+    public static function getAlldata($param)
+    {
+        if (isset($param)) {
+            $data = Queue::where('date_in', 'LIKE', $param."%")->orWhere('check_out', 'LIKE', $param."%")->get();
+        } else {
+            $data = Queue::orderBy('created_at', 'desc')->get();
+        }
+        
+        return $data;
     }
 }

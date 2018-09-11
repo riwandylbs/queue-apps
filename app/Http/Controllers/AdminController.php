@@ -16,8 +16,25 @@ class AdminController extends Controller
 
     public function loket(Request $request)
     {
-        $dockNumber = TempDock::orderBy('created_at', 'desc')->first();
-        return view('content.loket', compact('dockNumber'));
+        $tabCheckIn     = 'active';
+        $tabCheckout    = '';
+        $dockNumber     = TempDock::orderBy('created_at', 'desc')->first();
+        $queueDb        = Queue::getAlldata($request->input('data-list', null));
+
+        if ($request->input('search_vehicle', null)) {
+            $tabCheckIn     = '';
+            $tabCheckout    = 'active';
+            $queueDb    = new Queue();
+            $searching  = $queueDb->searching($request->input('search_vehicle', null));
+
+            if (isset($searching)) {
+                return view('content.loket', compact('dockNumber', 'tabCheckout', 'tabCheckIn', 'searching', 'queueDb'));                       
+            } 
+            
+            return redirect('/loket')->with('message', 'Data Not Found');   
+        }
+
+        return view('content.loket', compact('dockNumber', 'tabCheckout', 'tabCheckIn', 'queueDb'));
     }
 
     public function createQueue(Request $request)
@@ -30,13 +47,32 @@ class AdminController extends Controller
             'card_no' => 'required|integer'
         ]);
 
-        $insert = Queue::store($request);
+        $queueDb  = new Queue();
+        $insert = $queueDb->store($request);
 
-        return redirect('/loket');     
+        return redirect('/loket')->with('message', 'Data Berhasil di tambahkan');     
     }
     
-    public function gudang(Request $req)
+    public function checkout(Request $request)
     {
-        return view('content.gudang');        
+        $queueDb  = new Queue();
+        $update   = $queueDb->checkout($request); 
+        if ($update) {
+            return redirect('/loket')->with('message', 'Check Out Success');   
+        }
+
+        return redirect('/loket')->with('error', 'Failed to checkout');   
+    }
+    
+    public function gudang(Request $request)
+    {
+        $queueDb = Queue::getAlldata($request->input('data-list', null));
+
+        if ($request->input('search_vehicle', null)) {
+            $queueDb    = new Queue();
+            $searching  = $queueDb->searching($request->input('search_vehicle', null));
+            // return view('content.home_gudang', compact(''));        
+        }
+        return view('content.home_gudang', compact('queueDb'));        
     }
 }
